@@ -1,5 +1,6 @@
 # Standard
 import traceback
+import asyncio
 
 # Community
 import discord
@@ -49,3 +50,22 @@ def is_higher_up(bot, member):
         if role.id in white_shirt_roles:
             return True
     return False
+
+async def check_officer_status(bot):
+    await bot.wait_until_ready()
+
+    guild = bot.get_guild(bot.settings["Server_ID"])
+
+    while not bot.is_closed():
+        try:
+            for user in bot.user_manager.all_users.copy():
+                member = guild.get_member(user[0])
+
+                if member is None or is_officer(bot, member) is False:
+                    bot.user_manager.remove_user(user[0])
+
+        except Exception as error:
+            print("Error when checking officer health")
+            print(error)
+            print(traceback.format_exc())
+        await asyncio.sleep(3600)

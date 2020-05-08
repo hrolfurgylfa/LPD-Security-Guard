@@ -9,12 +9,13 @@ import Classes.menus as my_menus
 import Classes.checks as checks
 
 class VRChatAccoutLink(commands.Cog):
-    """This stores all the time commands."""
+    """This stores all the VRChatAccoutLink commands."""
     def __init__(self, bot):
         self.bot = bot
     
     @commands.command()
     @checks.is_lpd()
+    @checks.is_general_bot_channel()
     async def info(self, ctx):
         """
         This command gets info about your current account status.
@@ -27,6 +28,7 @@ class VRChatAccoutLink(commands.Cog):
 
     @commands.command()
     @checks.is_lpd()
+    @checks.is_general_bot_channel()
     async def link(self, ctx, vrchat_name):
         """
         This command is used to tell the bot your VRChat name.
@@ -60,6 +62,7 @@ class VRChatAccoutLink(commands.Cog):
     
     @commands.command()
     @checks.is_lpd()
+    @checks.is_general_bot_channel()
     async def unlink(self, ctx):
         """
         This command removes your account if you have a
@@ -80,7 +83,8 @@ class VRChatAccoutLink(commands.Cog):
     
     @commands.command()
     @checks.is_white_shirt()
-    async def list_all(self, ctx):
+    @checks.is_admin_bot_channel()
+    async def list_vrc_names(self, ctx):
         sep_char = self.bot.settings["name_separator"]
         vrc_names = [x[1] for x in self.bot.user_manager.all_users]
 
@@ -88,6 +92,25 @@ class VRChatAccoutLink(commands.Cog):
 
     @commands.command()
     @checks.is_white_shirt()
+    @checks.is_admin_bot_channel()
+    async def list_all(self, ctx):
+        out_string = "**All linked accounts:**\n**Discord - VRChat\n**"
+
+        guild = self.bot.get_guild(self.bot.settings["Server_ID"])
+        for user in self.bot.user_manager.all_users:
+            member = guild.get_member(user[0])
+            string_being_added = f"{member.display_name} - {user[1]}\n"
+
+            if len(out_string + string_being_added) >= 2000:
+                await ctx.send(out_string)
+                out_string = string_being_added
+            else:
+                out_string += string_being_added
+        await ctx.send(out_string)
+
+    @commands.command()
+    @checks.is_white_shirt()
+    @checks.is_admin_bot_channel()
     async def debug(self, ctx):
         """
         This command is just for debugging the bot.

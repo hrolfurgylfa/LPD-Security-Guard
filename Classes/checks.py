@@ -19,3 +19,17 @@ def is_white_shirt():
             raise errors.WhiteShirtOnly()
         return True
     return commands.check(predicate)
+
+def is_admin_bot_channel():
+    def predicate(ctx):
+        if ctx.message.channel.id != ctx.bot.settings["admin_bot_channel"]:
+            raise errors.WrongChannel("This command only works in the admin bot channel.")
+        return True
+    return commands.check(predicate)
+
+def is_general_bot_channel():
+    def predicate(ctx):
+        if ctx.message.channel.id != ctx.bot.settings["admin_bot_channel"] and ctx.message.channel.id != ctx.bot.settings["general_bot_channel"]:
+            raise errors.WrongChannel("This command only works in the general bot channel or admin bot channel.")
+        return True
+    return commands.check(predicate)

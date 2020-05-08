@@ -17,18 +17,13 @@ import commentjson as json
 # Mine
 import Classes.errors as errors
 import Classes.commands as bot_commands
+import Classes.help_command as help_command
 from Classes.UserManager import UserManager
 # Functions
 from Classes.extra_functions import get_settings_file
 from Classes.extra_functions import handleError
 from Classes.extra_functions import is_officer
-
-
-# ====================
-# Functions
-# ====================
-
-
+from Classes.extra_functions import check_officer_status
 
 
 # ====================
@@ -59,9 +54,10 @@ def supports_dms(ctx):
     else: return True
 
 @bot.check
-def in_admin_bot_channel(ctx):
-    if ctx.channel.id == ctx.bot.settings["admin_bot_channel"]: return True
-    else: raise errors.WrongChannelForCommand("This command only works in the administration bot channel.")
+def is_correct_server(ctx):
+    if ctx.guild.id != bot.settings["Server_ID"]:
+        raise errors.WrongServer()
+    return True
 
 
 # ====================
@@ -113,12 +109,15 @@ async def on_command_error(ctx, exception):
 # Add cogs
 # ====================
 
+# bot.remove_command('help')
+
 bot.add_cog(bot_commands.VRChatAccoutLink(bot))
+# bot.add_cog(help_command.Help(bot))
 
 
 # ====================
 # Start
 # ====================
 
-# bot.loop.create_task(setup_officer_manager())
+bot.loop.create_task(check_officer_status(bot))
 bot.run(bot.keys["Discord_token"])

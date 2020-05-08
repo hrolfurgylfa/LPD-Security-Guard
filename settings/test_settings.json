@@ -6,6 +6,7 @@
     // Channels
     "admin_bot_channel": 566777522252152883,
     "bot_debug_channel": 675423726053097485,
+    "general_bot_channel": 708117281376305232,
     
     // Roles
     "role_ladder": [
