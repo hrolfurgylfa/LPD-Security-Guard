@@ -31,7 +31,7 @@ from Classes.extra_functions import check_officer_status
 # ====================
 
 if platform == "linux" or platform == "linux2": settings_file_name = "remote_settings"
-elif platform == "win32": settings_file_name="test_settings"
+elif platform == "win32": settings_file_name="remote_settings"
 settings = get_settings_file(settings_file_name)
 
 bot = commands.Bot(command_prefix=settings["bot_prefix"], help_command=None)
@@ -67,12 +67,6 @@ def is_correct_server(ctx):
 @bot.event
 async def on_ready():
     print("on_ready")
-
-@bot.event
-async def on_message(message):
-    print("on_message")
-
-    await bot.process_commands(message)
 
 @bot.event
 async def on_member_update(before, after):

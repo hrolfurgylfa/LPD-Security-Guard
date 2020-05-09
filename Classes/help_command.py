@@ -5,6 +5,9 @@ import traceback
 import discord
 from discord.ext import commands
 
+# Mine
+from Classes.extra_functions import handleError
+
 
 class Help(commands.Cog):
 
@@ -112,6 +115,6 @@ class Help(commands.Cog):
                 # If the command was not found
                 else: await self.send_error(ctx, "The command you searched for was not found.")
 
-        except Exception:
+        except Exception as error:
             await ctx.send("Something failed with the help command.")
-            await ctx.send(traceback.format_exc())
+            await handleError(self.bot, error)
