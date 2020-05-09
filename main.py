@@ -34,7 +34,7 @@ if platform == "linux" or platform == "linux2": settings_file_name = "remote_set
 elif platform == "win32": settings_file_name="test_settings"
 settings = get_settings_file(settings_file_name)
 
-bot = commands.Bot(command_prefix=settings["bot_prefix"])
+bot = commands.Bot(command_prefix=settings["bot_prefix"], help_command=None)
 
 bot.settings = settings
 bot.keys = get_settings_file("Keys")
@@ -109,10 +109,8 @@ async def on_command_error(ctx, exception):
 # Add cogs
 # ====================
 
-# bot.remove_command('help')
-
 bot.add_cog(bot_commands.VRChatAccoutLink(bot))
-# bot.add_cog(help_command.Help(bot))
+bot.add_cog(help_command.Help(bot))
 
 
 # ====================

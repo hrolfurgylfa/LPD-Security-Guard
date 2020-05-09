@@ -19,6 +19,9 @@ class VRChatAccoutLink(commands.Cog):
     async def info(self, ctx):
         """
         This command gets info about your current account status.
+
+        This command shows you information about if you have your VRChat account connected or
+        not and how to connect it or disconnect it.
         """
         vrchat_name = self.bot.user_manager.get_vrc_by_discord(ctx.author.id)
         if vrchat_name:
@@ -85,6 +88,12 @@ class VRChatAccoutLink(commands.Cog):
     @checks.is_white_shirt()
     @checks.is_admin_bot_channel()
     async def list_vrc_names(self, ctx):
+        """
+        This command is used to get the VRChat names of the people that are LPD Officers.
+        
+        The output from this command is only intended to be read by computers and is not
+        easy to read for humans.
+        """
         sep_char = self.bot.settings["name_separator"]
         vrc_names = [x[1] for x in self.bot.user_manager.all_users]
 
@@ -94,6 +103,11 @@ class VRChatAccoutLink(commands.Cog):
     @checks.is_white_shirt()
     @checks.is_admin_bot_channel()
     async def list_all(self, ctx):
+        """
+        This command shows the Discord and VRChat names of all officers registered with the bot.
+
+        This information is intended to check who has a specific VRChat account.
+        """
         out_string = "**All linked accounts:**\n**Discord - VRChat\n**"
 
         guild = self.bot.get_guild(self.bot.settings["Server_ID"])
@@ -113,6 +127,6 @@ class VRChatAccoutLink(commands.Cog):
     @checks.is_admin_bot_channel()
     async def debug(self, ctx):
         """
-        This command is just for debugging the bot.
+        This command is just for testing the bot.
         """
         await ctx.send(str(self.bot.user_manager.all_users))
