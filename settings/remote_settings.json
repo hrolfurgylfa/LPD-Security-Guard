@@ -1,10 +1,12 @@
 {
     "Server_ID": 645383380870889482,
     "bot_prefix": "$",
+    "name_separator": ";",
     
     // Channels
     "admin_bot_channel": 645383848284258305,
     "bot_debug_channel": 677546865998168144,
+    "general_bot_channel": 708736137463726131,
     
     // Roles
     "role_ladder": [
@@ -34,25 +36,34 @@
             "id": 645394647350247465
         },
         {
+            "name": "LPD Advisor",
+            "name_id": "advisor",
+            "id": 679474638266433567,
+            "is_white_shirt": true
+        },
+        {
             "name": "LPD Lieutenant",
             "name_id": "lieutenant",
-            "id": 645394607714074634
+            "id": 645394607714074634,
+            "is_white_shirt": true
         },
         {
             "name": "LPD Captain",
             "name_id": "captain",
-            "id": 645394574055047198
+            "id": 645394574055047198,
+            "is_white_shirt": true
         },
         {
             "name": "LPD Deputy Chief",
             "name_id": "deputy_chief",
-            "id": 645394500717641751
+            "id": 645394500717641751,
+            "is_white_shirt": true
         },
         {
             "name": "LPD Chief",
             "name_id": "chief",
-            "id": 645388308158873610
+            "id": 645388308158873610,
+            "is_white_shirt": true
         }
     ]
 }
-    
