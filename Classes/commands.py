@@ -32,7 +32,7 @@ class VRChatAccoutLink(commands.Cog):
     @commands.command()
     @checks.is_lpd()
     @checks.is_general_bot_channel()
-    async def link(self, ctx, *vrchat_name):
+    async def link(self, ctx, vrchat_name):
         r"""
         This command is used to tell the bot your VRChat name.
 
@@ -45,11 +45,6 @@ class VRChatAccoutLink(commands.Cog):
         quotes and spaces you can do \ before every quote you want to be
         apart of your name, example: $link "your \\\"vrchat\\\" name".
         """
-
-        assembled_vrchat_name = ""
-        for part in vrchat_name:
-            assembled_vrchat_name += part + " "
-        assembled_vrchat_name = assembled_vrchat_name[0:-1]
 
         # Make sure the name does not contain the seperation character
         if self.bot.settings["name_separator"] in vrchat_name:
