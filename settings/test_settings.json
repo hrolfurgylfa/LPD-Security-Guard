@@ -1,0 +1,35 @@
+{
+    "Server_ID": 566315650864381953,
+    "bot_prefix": "$",
+    "name_separator": ";",
+    
+    // Channels
+    "admin_bot_channel": 566777522252152883,
+    "bot_debug_channel": 675423726053097485,
+    "general_bot_channel": 708117281376305232,
+    
+    // Roles
+    "role_ladder": [
+        {
+            "name": "LPD Cadet",
+            "name_id": "cadet",
+            "id": 666005873679663134
+        },
+        {
+            "name": "LPD Recruit",
+            "name_id": "recruit",
+            "id": 594238854102515735
+        },
+        {
+            "name": "LPD Officer",
+            "name_id": "officer",
+            "id": 594239040723615780
+        },
+        {
+            "name": "LPD Captain",
+            "name_id": "captain",
+            "id": 584111242705371138,
+            "is_white_shirt": true
+        }
+    ]
+}
