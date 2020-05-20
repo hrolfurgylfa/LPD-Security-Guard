@@ -3,6 +3,7 @@ from io import StringIO
 from io import BytesIO
 
 # Community
+import discord
 from discord.ext import commands
 from discord.ext import menus
 
