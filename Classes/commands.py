@@ -108,7 +108,7 @@ class VRChatAccoutLink(commands.Cog):
         sep_char = self.bot.settings["name_separator"]
         vrc_names = [x[1] for x in self.bot.user_manager.all_users]
         
-        output_text = f"```\n{sep_char.join(vrc_names)}\n```"
+        output_text = f"{sep_char.join(vrc_names)}"
         if len(output_text) < 2000:
             await ctx.send(output_text)
         else:
