@@ -69,3 +69,13 @@ async def check_officer_status(bot):
             print(error)
             print(traceback.format_exc())
         await asyncio.sleep(3600)
+
+async def send_long_str(ctx, string):
+    output_str = ""
+    for line in string.splitlines():
+        if len(output_str + line + "\n") < 2000:
+            output_str += line + "\n"
+        else:
+            await ctx.send(output_str)
+            output_str = line
+    await ctx.send(output_str)

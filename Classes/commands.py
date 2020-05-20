@@ -7,6 +7,7 @@ import Classes.errors as errors
 import Classes.UserManager
 import Classes.menus as my_menus
 import Classes.checks as checks
+from Classes.extra_functions import send_long_str
 
 class VRChatAccoutLink(commands.Cog):
     """This stores all the VRChatAccoutLink commands."""
@@ -102,7 +103,7 @@ class VRChatAccoutLink(commands.Cog):
         sep_char = self.bot.settings["name_separator"]
         vrc_names = [x[1] for x in self.bot.user_manager.all_users]
 
-        await ctx.send(f"```\n{sep_char.join(vrc_names)}\n```")
+        await send_long_str(ctx, f"```\n{sep_char.join(vrc_names)}\n```")
 
     @commands.command()
     @checks.is_white_shirt()
