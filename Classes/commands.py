@@ -1,3 +1,7 @@
+# Standard
+from io import StringIO
+from io import BytesIO
+
 # Community
 from discord.ext import commands
 from discord.ext import menus
@@ -102,8 +106,16 @@ class VRChatAccoutLink(commands.Cog):
         """
         sep_char = self.bot.settings["name_separator"]
         vrc_names = [x[1] for x in self.bot.user_manager.all_users]
+        
+        output_text = f"```\n{sep_char.join(vrc_names)}\n```"
+        if len(output_text) < 2000:
+            await ctx.send(output_text)
+        else:
+            with StringIO(output_text) as error_file_sio:
+                with BytesIO(error_file_sio.read().encode('utf8')) as error_file:
+                    await ctx.send("The output is too big to fit in a discord message so it is insted in a file.", file=discord.File(error_file, filename="all_vrc_names.txt"))
+        
 
-        await send_long_str(ctx, f"```\n{sep_char.join(vrc_names)}\n```")
 
     @commands.command()
     @checks.is_white_shirt()
