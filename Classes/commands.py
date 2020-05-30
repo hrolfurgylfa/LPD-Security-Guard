@@ -115,8 +115,6 @@ class VRChatAccoutLink(commands.Cog):
             with StringIO(output_text) as error_file_sio:
                 with BytesIO(error_file_sio.read().encode('utf8')) as error_file:
                     await ctx.send("The output is too big to fit in a discord message so it is insted in a file.", file=discord.File(error_file, filename="all_vrc_names.txt"))
-        
-
 
     @commands.command()
     @checks.is_white_shirt()

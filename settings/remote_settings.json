@@ -9,6 +9,7 @@
     "general_bot_channel": 708736137463726131,
     
     // Roles
+    "lpd_role": 654438235950415902,
     "role_ladder": [
         {
             "name": "LPD Cadet",

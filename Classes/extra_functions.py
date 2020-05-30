@@ -36,9 +36,9 @@ async def handleError(bot, *text, end=" "):
 def is_officer(bot, member):
     if member is None: return False
 
-    officer_roles = [x["id"] for x in bot.settings["role_ladder"] if x["name_id"] != "cadet"]
+    officer_roles = [x["id"] for x in bot.settings["role_ladder"] if "is_officer" in x and x["is_officer"] == True]
     for role in member.roles:
-        if role.id in officer_roles:
+        if role.id in officer_roles or role.id == bot.settings["lpd_role"]:
             return True
     return False
 
