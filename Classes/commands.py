@@ -181,7 +181,7 @@ class Other(commands.Cog):
                 break
         
         # Make sure the role was found and that people have it
-        if return_role is False:
+        if return_role == None:
             await ctx.send(f"The role {role_name} does not exist.")
             return
         if not return_role.members:
