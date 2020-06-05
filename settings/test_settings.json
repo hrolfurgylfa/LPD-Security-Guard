@@ -34,6 +34,14 @@
             "id": 584111242705371138,
             "is_officer": true,
             "is_white_shirt": true
+        },
+        {
+            "name": "LPD Chief",
+            "name_id": "chief",
+            "id": 717803321569837216,
+            "is_officer": true,
+            "is_white_shirt": true,
+            "is_admin": true
         }
     ]
 }

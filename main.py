@@ -103,8 +103,9 @@ async def on_command_error(ctx, exception):
 # Add cogs
 # ====================
 
-bot.add_cog(bot_commands.VRChatAccoutLink(bot))
 bot.add_cog(help_command.Help(bot))
+bot.add_cog(bot_commands.VRChatAccoutLink(bot))
+bot.add_cog(bot_commands.Other(bot))
 
 
 # ====================

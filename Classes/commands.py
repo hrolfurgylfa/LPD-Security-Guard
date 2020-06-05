@@ -147,3 +147,49 @@ class VRChatAccoutLink(commands.Cog):
         This command is just for testing the bot.
         """
         await ctx.send(str(self.bot.user_manager.all_users))
+
+class Other(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @staticmethod
+    def filter_start_end(string, list_of_characters_to_filter):
+        while True:
+            if string[0] in list_of_characters_to_filter:
+                string = string[1::]
+            else: break
+
+        while True:
+            if string[-1] in list_of_characters_to_filter:
+                string = string[0:-1]
+            else: break
+        
+        return string
+
+
+    @commands.command()
+    @checks.is_white_shirt()
+    @checks.is_admin_bot_channel()
+    async def vrc_names_in_role(self, ctx, role_name):
+
+        # Get the role
+        return_role = None
+        for role_2 in ctx.guild.roles:
+            if self.filter_start_end(role_2.name, ["|", " ", "⠀", " "]) == role_name:
+                return_role = role_2
+                break
+        
+        # Make sure the role was found and that people have it
+        if return_role is False:
+            await ctx.send(f"The role {role_name} does not exist.")
+            return
+        if not return_role.members:
+            await ctx.send(f"{role_name} is empty")
+            return
+        
+        # Send everyone
+        send_str = f"Here is everyone in the role {role_name}:\n"
+        send_str += "\n".join(self.bot.user_manager.get_vrc_by_discord(x.id) or x.display_name for x in return_role.members)
+
+        await send_long_str(ctx, send_str)
