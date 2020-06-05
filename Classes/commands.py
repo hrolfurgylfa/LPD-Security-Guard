@@ -190,6 +190,6 @@ class Other(commands.Cog):
         
         # Send everyone
         send_str = f"Here is everyone in the role {role_name}:\n"
-        send_str += "\n".join(self.bot.user_manager.get_vrc_by_discord(x.id) or x.display_name for x in return_role.members)
+        send_str += "```" + "\n".join(self.bot.user_manager.get_vrc_by_discord(x.id) or x.display_name for x in return_role.members) + "```"
 
         await send_long_str(ctx, send_str)
