@@ -188,8 +188,10 @@ class Other(commands.Cog):
             await ctx.send(f"{role_name} is empty")
             return
         
-        # Send everyone
-        send_str = f"Here is everyone in the role {role_name}:\n"
-        send_str += "```" + "\n".join(self.bot.user_manager.get_vrc_by_discord(x.id) or x.display_name for x in return_role.members) + "```"
+        # Sort the members
+        vrc_name = lambda x: self.bot.user_manager.get_vrc_by_discord(x.id) or x.display_name
+        members = sorted(return_role.members, key=vrc_name)
+        members_str = "\n".join(vrc_name(x) for x in members)
 
-        await send_long_str(ctx, send_str)
+        # Send everyone
+        await send_long_str(ctx, f"Here is everyone in the role {role_name}:\n```\n{members_str}\n```")
